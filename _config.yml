@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/proj-courses-s23-7pm-1
 owner: ucsb-cs156-s23
 repo_name: proj-courses-s23-7pm-1
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjYwMTI0ODcz","is_bot":false,"login":"b4k3s","name":""},"headRefName":"Christian-UpdateREADME","number":8,"title":"Update README urls to reflect our project","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-1/pull/8"}]
