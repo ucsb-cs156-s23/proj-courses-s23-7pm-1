@@ -34,7 +34,11 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
     []
   );
 
-  const [quarter, setQuarter] = useState(localQuarter || quarters[0].yyyyq);
+  const quartersWithSelectAll = [
+    { yyyyq: "all", qyy: "Select All" },
+    ...quarters
+  ];
+  const [quarter, setQuarter] = useState(localQuarter || "all");
   const [subject, setSubject] = useState(localSubject || {});
   const [level, setLevel] = useState(localLevel || "U");
 
@@ -50,7 +54,7 @@ const BasicCourseSearchForm = ({ fetchJSON }) => {
         <Row>
           <Col md="auto">
             <SingleQuarterDropdown
-              quarters={quarters}
+              quarters={quartersWithSelectAll}
               quarter={quarter}
               setQuarter={setQuarter}
               controlId={"BasicSearch.Quarter"}
