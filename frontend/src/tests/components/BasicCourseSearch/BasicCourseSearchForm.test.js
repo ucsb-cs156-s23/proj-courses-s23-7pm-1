@@ -124,6 +124,7 @@ describe("BasicCourseSearchForm tests", () => {
       quarter: "20211",
       subject: "ANTH",
       level: "G",
+      instructor: "",
     };
 
     const expectedKey = "BasicSearch.Subject-option-ANTH";
@@ -136,6 +137,8 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "ANTH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
+    const selectInstructor = screen.getByLabelText("Course Instructor");
+    userEvent.type(selectInstructor, "");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
 
@@ -176,6 +179,8 @@ describe("BasicCourseSearchForm tests", () => {
     userEvent.selectOptions(selectSubject, "MATH");
     const selectLevel = screen.getByLabelText("Course Level");
     userEvent.selectOptions(selectLevel, "G");
+    const selectInstructor = screen.getByLabelText("Course Instructor");
+    userEvent.type(selectInstructor, "");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
   });
