@@ -9,7 +9,7 @@ export default function CourseInstructorIndexPage() {
   const [courseJSON, setCourseJSON] = useState([]);
 
   const objectToAxiosParams = (query) => ({
-    url: "/api/public/courseinstructor/search",
+    url: "/api/public/basicsearch",
     params: {
       startQtr: query.startQuarter,
       endQtr: query.endQuarter,
@@ -17,9 +17,7 @@ export default function CourseInstructorIndexPage() {
     },
   });
 
-  const onSuccess = (courses) => {
-    setCourseJSON(courses.classes);
-  };
+  const onSuccess = (courses) => { setCourseJSON(courses.classes);};
 
   const mutation = useBackendMutation(
     objectToAxiosParams,
