@@ -16,10 +16,10 @@ package edu.ucsb.cs156.courses.entities;
  /**
   * GradeHistory - Entity for grade history data.  Each object represents one
   * row from the CSV files located in this repository:
-  * <a href="https://github.com/rtora/UCSB_Grades">https://github.com/rtora/UCSB_Grades</a>
+  * <a href="https://github.com/ucsb-cs156/UCSB_Grades.git">https://github.com/ucsb-cs156/UCSB_Grades.git</a>
   * 
-  * There is a unique constraint on the combination of year, 
-  * quarter, subjectArea, course, instructor, and grade, since we do not want
+  * There is a unique constraint on the combination of  
+  * quarter, level, course, instructor, and grade, since we do not want
   * duplicate rows of data for the same course.
   */
 
@@ -28,16 +28,14 @@ package edu.ucsb.cs156.courses.entities;
  @AllArgsConstructor
  @NoArgsConstructor
  @Entity(name = "gradehistory")
- @Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeHistory", columnNames = { "year", "quarter",
-  "subjectArea","course","instructor","grade" }) })
+ @Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeHistory", columnNames = { "quarter",
+  "level","course","instructor","grade" }) })
  public class GradeHistory {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-     private String year;
      private String quarter;
      private String level;
-     private String subjectArea;
      private String course;
      private String instructor;
      private String grade;
