@@ -1,4 +1,4 @@
-# proj-courses
+# proj-courses-s23-7pm-1
 
 This repo contains the code for the CMPSC 156 legacy code project "Courses Search". 
 
@@ -10,8 +10,8 @@ Users with a Google Account can also store past, current or future schedules of 
 
 | Type | Link       | 
 |------|------------|
-| prod | <https://proj-courses.dokku-00.cs.ucsb.edu/> | 
-| qa | <https://proj-courses-qa.dokku-00.cs.ucsb.edu/>  | 
+| prod | <https://proj-courses.dokku-09.cs.ucsb.edu/> | 
+| qa | <https://proj-courses-qa.dokku-09.cs.ucsb.edu/>  | 
 
 
 # Setup before running application
