@@ -28,16 +28,14 @@ package edu.ucsb.cs156.courses.entities;
  @AllArgsConstructor
  @NoArgsConstructor
  @Entity(name = "gradehistory")
- @Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeHistory", columnNames = { "year", "quarter",
-  "subjectArea","course","instructor","grade" }) })
+ @Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueGradeHistory", columnNames = { "quarter",
+  "level","course","instructor","grade" }) })
  public class GradeHistory {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-     private String year;
      private String quarter;
      private String level;
-     private String subjectArea;
      private String course;
      private String instructor;
      private String grade;
