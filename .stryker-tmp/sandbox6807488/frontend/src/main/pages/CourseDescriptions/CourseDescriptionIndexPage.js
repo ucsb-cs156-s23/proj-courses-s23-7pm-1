@@ -1,25 +1,25 @@
 import { useState } from "react";
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import InstructorCourseSearchForm from "main/components/BasicCourseSearch/InstructorCourseSearchForm";
-import { useBackendMutation } from "main/utils/useBackend";
+import BasicCourseSearchForm from "main/components/BasicCourseSearch/BasicCourseSearchForm";
 import BasicCourseTable from "main/components/Courses/BasicCourseTable";
+import { useBackendMutation } from "main/utils/useBackend";
 
-export default function CourseInstructorIndexPage() {
+export default function CourseDescriptionIndexPage() {
   // Stryker disable next-line all : Can't test state because hook is internal
   const [courseJSON, setCourseJSON] = useState([]);
 
   const objectToAxiosParams = (query) => ({
-    url: "/api/public/courseinstructor/search",
+    url: "/api/public/basicsearch",
     params: {
-      startQtr: query.startQuarter,
-      endQtr: query.endQuarter,
-      instructor: query.instructor,
+      qtr: query.quarter,
+      dept: query.subject,
+      level: query.level,
     },
   });
 
-  const onSuccess = (setCourseJSON);
-    
-
+  const onSuccess = (courses) => {
+    setCourseJSON(courses.classes);
+  };
 
   const mutation = useBackendMutation(
     objectToAxiosParams,
@@ -28,15 +28,15 @@ export default function CourseInstructorIndexPage() {
     []
   );
 
-  async function fetchCourseInstructorJSON(_event, query) {
+  async function fetchBasicCourseJSON(_event, query) {
     mutation.mutate(query);
   }
 
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h5>Welcome to the UCSB Course Instructor Search!</h5>
-        <InstructorCourseSearchForm fetchJSON={fetchCourseInstructorJSON} />
+        <h5>Welcome to the UCSB Courses Description Search!</h5>
+        <BasicCourseSearchForm fetchJSON={fetchBasicCourseJSON} />
         <BasicCourseTable courses={courseJSON} />
       </div>
     </BasicLayout>

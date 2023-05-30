@@ -26,7 +26,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const localEndQuarter = localStorage.getItem("InstructorCourseSearch.EndQuarter");
   //const localSubject = localStorage.getItem("InstructorCourseSearch.Subject");
   //const localCourseNumber = localStorage.getItem("InstructorCourseSearch.CourseNumber");
-  const localInstructor = localStorage.getItem("InstructorCourseSearch.instructor");
+  const localInstructor = localStorage.getItem("InstructorCourseSearch.Instructor");
 
   const { error: _error, status: _status } =
   useBackend(
@@ -41,7 +41,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   //const [subject, setSubject] = useState(localSubject || {});
   //const [courseNumber, setCourseNumber] = useState(localCourseNumber || "");
   //const [courseSuf, setCourseSuf] = useState("");
-  const [instructor, setInstructor] = useState(localInstructor || "");
+  const [instructor, setInstructor] = useState(localInstructor|| "");
     
   const handleSubmit = (event) => {
     event.preventDefault();
