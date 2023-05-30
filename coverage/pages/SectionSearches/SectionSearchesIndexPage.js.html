@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -120,23 +120,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,10 +130,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,11 +165,11 @@ import _BasicCourseTable from "main/components/Courses/BasicCourseTable";
 import { useBackendMutation } from "main/utils/useBackend";
 import SectionsTable from "main/components/Sections/SectionsTable";
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >SectionSearchesIndexPage(</span>) {
+export default function SectionSearchesIndexPage() {
   // Stryker disable next-line all : Can't test state because hook is internal
-  const [sectionJSON, setSectionJSON] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+  const [sectionJSON, setSectionJSON] = useState([]);
 &nbsp;
-  const objectToAxiosParams = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>uery) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+  const objectToAxiosParams = (query) =&gt; ({
     url: "/api/sections/basicsearch",
     params: {
       qtr: query.quarter,
@@ -178,23 +178,23 @@ export default function <span class="fstat-no" title="function not covered" >Sec
     },
   });
 &nbsp;
-  const onSuccess = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ection) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log()</span>
-<span class="cstat-no" title="statement not covered" >    setSectionJSON(section);</span>
+  const onSuccess = (section) =&gt; {
+    console.log()
+    setSectionJSON(section);
   };
 &nbsp;
-  const mutation = <span class="cstat-no" title="statement not covered" >useBackendMutation(</span>
+  const mutation = useBackendMutation(
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
     []
   );
 &nbsp;
-  async function <span class="fstat-no" title="function not covered" >fetchBasicSectionJSON(</span>_event, query) {
-<span class="cstat-no" title="statement not covered" >    mutation.mutate(query);</span>
+  async function fetchBasicSectionJSON(_event, query) {
+    mutation.mutate(query);
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         &lt;h5&gt;Welcome to the UCSB Courses Search App!&lt;/h5&gt;
@@ -211,7 +211,7 @@ export default function <span class="fstat-no" title="function not covered" >Sec
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 30 2023 14:33:38 GMT-0700 (Pacific Daylight Time)
+                at Tue May 30 2023 14:35:32 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
