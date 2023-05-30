@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,11 +115,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,11 +125,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,10 +139,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,11 +157,11 @@ import CourseOverTimeSearchForm from "main/components/BasicCourseSearch/CourseOv
 import { useBackendMutation } from "main/utils/useBackend";
 import SectionsOverTimeTable from "main/components/Sections/SectionsOverTimeTable";
 &nbsp;
-export default function CourseOverTimeIndexPage() {
+export default function <span class="fstat-no" title="function not covered" >CourseOverTimeIndexPage(</span>) {
   // Stryker disable next-line all : Can't test state because hook is internal
-  const [courseJSON, setCourseJSON] = useState([]);
+  const [courseJSON, setCourseJSON] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
 &nbsp;
-  const objectToAxiosParams = (query) =&gt; ({
+  const objectToAxiosParams = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(q</span>uery) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
     url: "/api/public/courseovertime/search",
     params: {
       startQtr: query.startQuarter,
@@ -171,22 +171,22 @@ export default function CourseOverTimeIndexPage() {
     },
   });
 &nbsp;
-  const onSuccess = (courses) =&gt; {
-    setCourseJSON(courses);
+  const onSuccess = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(c</span>ourses) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setCourseJSON(courses);</span>
   };
 &nbsp;
-  const mutation = useBackendMutation(
+  const mutation = <span class="cstat-no" title="statement not covered" >useBackendMutation(</span>
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
     []
   );
 &nbsp;
-  async function fetchCourseOverTimeJSON(_event, query) {
-    mutation.mutate(query);
+  async function <span class="fstat-no" title="function not covered" >fetchCourseOverTimeJSON(</span>_event, query) {
+<span class="cstat-no" title="statement not covered" >    mutation.mutate(query);</span>
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         &lt;h5&gt;Welcome to the UCSB Course History Search!&lt;/h5&gt;
@@ -202,7 +202,7 @@ export default function CourseOverTimeIndexPage() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 29 2023 23:31:42 GMT-0700 (Pacific Daylight Time)
+                at Tue May 30 2023 14:33:29 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

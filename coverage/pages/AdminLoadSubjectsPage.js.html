@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -127,37 +127,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,27 +181,27 @@ import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import UCSBSubjectsTable from 'main/components/UCSBSubjects/UCSBSubjectsTable';
 &nbsp;
-export default function AdminLoadSubjectsPage() {
+export default function <span class="fstat-no" title="function not covered" >AdminLoadSubjectsPage(</span>) {
   const { data: subjects, error: _error, status: _status } =
-      useBackend(
+<span class="cstat-no" title="statement not covered" >      useBackend(</span>
         // Stryker disable next-line all : don't test internal caching of React Query
         ["/api/UCSBSubjects/all"], { method: "GET", url: "/api/UCSBSubjects/all" }, []
       );
 &nbsp;
-  const objectToAxiosParams = () =&gt; ({
+  const objectToAxiosParams = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
     url: '/api/UCSBSubjects/load',
     method: 'POST',
   });
 &nbsp;
-  var subjectsCount = subjects.length;
+  var subjectsCount = <span class="cstat-no" title="statement not covered" >subjects.length;</span>
 &nbsp;
-  const onSuccess = (subjects) =&gt; {
-    toast(`Number of Subjects Loaded : ${subjects.length - subjectsCount}`);
-    subjectsCount = subjects.length;
+  const onSuccess = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ubjects) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    toast(`Number of Subjects Loaded : ${subjects.length - subjectsCount}`);</span>
+<span class="cstat-no" title="statement not covered" >    subjectsCount = subjects.length;</span>
   };
 &nbsp;
 &nbsp;
-  const mutation = useBackendMutation(
+  const mutation = <span class="cstat-no" title="statement not covered" >useBackendMutation(</span>
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
@@ -209,11 +209,11 @@ export default function AdminLoadSubjectsPage() {
   );
 &nbsp;
 &nbsp;
-  const onSubmit = async (data) =&gt; {
-      mutation.mutate(data);
+  const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      mutation.mutate(data);</span>
   };
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;BasicLayout&gt;
       &lt;h2&gt;Subjects&lt;/h2&gt;
       &lt;Button
@@ -238,7 +238,7 @@ export default function AdminLoadSubjectsPage() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 29 2023 23:31:42 GMT-0700 (Pacific Daylight Time)
+                at Tue May 30 2023 14:33:29 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
