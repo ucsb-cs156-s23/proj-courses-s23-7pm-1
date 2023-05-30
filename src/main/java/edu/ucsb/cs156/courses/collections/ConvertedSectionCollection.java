@@ -19,5 +19,4 @@ public interface ConvertedSectionCollection extends MongoRepository<ConvertedSec
         String startQuarter,
         String endQuarter,
         String courseId );
-    
 }

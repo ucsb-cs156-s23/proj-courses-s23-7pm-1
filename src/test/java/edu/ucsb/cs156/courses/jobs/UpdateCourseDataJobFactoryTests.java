@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 
 import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
+import edu.ucsb.cs156.courses.collections.UpdateCollection;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 
 @RestClientTest(UpdateCourseDataJobFactory.class)
@@ -24,6 +25,9 @@ public class UpdateCourseDataJobFactoryTests {
 
     @MockBean
     ConvertedSectionCollection convertedSectionCollection;
+
+    @MockBean
+    UpdateCollection updateCollection;
 
     @Autowired
     UpdateCourseDataJobFactory updateCourseDataJobFactory;
@@ -41,6 +45,7 @@ public class UpdateCourseDataJobFactoryTests {
         assertEquals("20211",updateCourseDataJob.getQuarterYYYYQ());
         assertEquals(ucsbCurriculumService,updateCourseDataJob.getUcsbCurriculumService());
         assertEquals(convertedSectionCollection,updateCourseDataJob.getConvertedSectionCollection());
+        assertEquals(updateCollection,updateCourseDataJob.getUpdateCollection());
 
     }
 }

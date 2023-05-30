@@ -2,17 +2,18 @@ package edu.ucsb.cs156.courses.jobs;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.time.ZonedDateTime;
 
 import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
+import edu.ucsb.cs156.courses.collections.UpdateCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
+import edu.ucsb.cs156.courses.documents.Update;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import edu.ucsb.cs156.courses.services.jobs.JobContext;
 import edu.ucsb.cs156.courses.services.jobs.JobContextConsumer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
 
 @AllArgsConstructor
 @Slf4j
@@ -22,6 +23,26 @@ public class UpdateCourseDataJob implements JobContextConsumer {
     @Getter private String quarterYYYYQ;
     @Getter private UCSBCurriculumService ucsbCurriculumService;
     @Getter private ConvertedSectionCollection convertedSectionCollection;
+    @Getter private UpdateCollection updateCollection;
+
+    public void setLastUpdateTime(UpdateCollection uc, String subjectArea, String quarterYYYYQ) {
+        Optional<Update> optionalUpdate =
+            uc.findOneBySubjectAreaAndQuarterYYYYQ(subjectArea, quarterYYYYQ);
+
+        if (optionalUpdate.isPresent()) {
+            Update existingUpdate = optionalUpdate.get();
+            existingUpdate.setLastUpdate(ZonedDateTime.now());
+            uc.save(existingUpdate);
+        } else {
+            uc.save(
+                Update.builder()
+                    .subjectArea(subjectArea)
+                    .quarterYYYYQ(quarterYYYYQ)
+                    .lastUpdate(ZonedDateTime.now())
+                    .build()
+            );
+        }
+    }
 
     @Override
     public void accept(JobContext ctx) throws Exception {
