@@ -5,7 +5,7 @@ import { allTheSubjects } from "fixtures/subjectFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 
 export default {
-  title: "components/InstructorCourseSearch/InstructorCourseSearchForm",
+  title: "components/BasicCourseSearch/InstructorCourseSearchForm",
   component: InstructorCourseSearchForm,
   parameters: {
     mockData: [
