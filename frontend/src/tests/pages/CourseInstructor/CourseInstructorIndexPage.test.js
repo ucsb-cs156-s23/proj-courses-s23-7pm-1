@@ -1,14 +1,14 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render} from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import userEvent from "@testing-library/user-event";
+
 
 import CourseInstructorIndexPage from "main/pages/CourseInstructor/CourseInstructorIndexPage";
-import { coursesFixtures } from "fixtures/courseFixtures";
+
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
-import { allTheSubjects } from "fixtures/subjectFixtures";
+
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 
 const mockToast = jest.fn();
