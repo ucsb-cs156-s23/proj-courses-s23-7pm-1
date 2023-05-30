@@ -1,6 +1,6 @@
 import React from "react";
 
-import InstructorCourseSearchForm from "main/components/InstructorCourseSearch/InstructorCourseSearchForm";
+import InstructorCourseSearchForm from "main/components/BasicCourseSearch/InstructorCourseSearchForm";
 import { allTheSubjects } from "fixtures/subjectFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 
