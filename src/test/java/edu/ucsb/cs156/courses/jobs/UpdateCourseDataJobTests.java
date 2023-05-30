@@ -17,9 +17,10 @@ import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
 import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
+import edu.ucsb.cs156.courses.collections.UpdateCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
+import edu.ucsb.cs156.courses.documents.Update;
 import edu.ucsb.cs156.courses.documents.CoursePage;
 import edu.ucsb.cs156.courses.documents.CoursePageFixtures;
 import edu.ucsb.cs156.courses.entities.Job;
@@ -36,6 +37,9 @@ public class UpdateCourseDataJobTests {
     @Mock
     ConvertedSectionCollection convertedSectionCollection;
 
+    @Mock
+    UpdateCollection updateCollection;
+
     @Test
     void test_log_output_success() throws Exception {
 
@@ -49,8 +53,13 @@ public class UpdateCourseDataJobTests {
 
         List<ConvertedSection> result = coursePage.convertedSections();
 
-        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob("CMPSC", "20211", ucsbCurriculumService,
-                convertedSectionCollection);
+        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob(
+                "CMPSC",
+                "20211",
+                ucsbCurriculumService,
+                convertedSectionCollection,
+                updateCollection
+                );
 
         when(ucsbCurriculumService.getConvertedSections(eq("CMPSC"), eq("20211"), eq("A"))).thenReturn(result);
         when(convertedSectionCollection.saveAll(any())).thenReturn(result);
@@ -93,8 +102,13 @@ public class UpdateCourseDataJobTests {
         listWithTwoOrigOneDuplicate.add(section1);
         listWithTwoOrigOneDuplicate.add(section0);
 
-        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob("MATH", "20211", ucsbCurriculumService,
-                convertedSectionCollection);
+        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob(
+                "MATH",
+                "20211",
+                ucsbCurriculumService,
+                convertedSectionCollection,
+                updateCollection
+                );
 
         Optional<ConvertedSection> section0Optional = Optional.of(section0);
         Optional<ConvertedSection> emptyOptional = Optional.empty();
@@ -146,8 +160,13 @@ public class UpdateCourseDataJobTests {
 
         listWithOneSection.add(section0);
 
-        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob("MATH", "20211", ucsbCurriculumService,
-                convertedSectionCollection);
+        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob(
+                "MATH",
+                "20211",
+                ucsbCurriculumService,
+                convertedSectionCollection,
+                updateCollection
+                );
 
         Optional<ConvertedSection> section0Optional = Optional.of(section0);
         Optional<ConvertedSection> emptyOptional = Optional.empty();
@@ -202,8 +221,13 @@ public class UpdateCourseDataJobTests {
         updatedSection.getSection().setEnrolledTotal(oldEnrollment + 1);
         listWithUpdatedSection.add(updatedSection);
 
-        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob("MATH", "20211", ucsbCurriculumService,
-                convertedSectionCollection);
+        UpdateCourseDataJob updateCourseDataJob = new UpdateCourseDataJob(
+                "MATH",
+                "20211",
+                ucsbCurriculumService,
+                convertedSectionCollection,
+                updateCollection
+                );
 
         Optional<ConvertedSection> section0Optional = Optional.of(section0);
 
