@@ -9,6 +9,7 @@ export default function CourseInstructorIndexPage() {
   const [courseJSON, setCourseJSON] = useState([]);
 
   const objectToAxiosParams = (query) => ({
+    // Stryker disable next-line all : Can't test state because hook is internal
     url: "/api/public/courseinstructor/search",
     params: {
       startQtr: query.startQuarter,
@@ -23,6 +24,7 @@ export default function CourseInstructorIndexPage() {
 
   const mutation = useBackendMutation(
     objectToAxiosParams,
+    // Stryker disable next-line all : Can't test state because hook is internal
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
     []
@@ -37,6 +39,7 @@ export default function CourseInstructorIndexPage() {
       <div className="pt-2">
         <h5>Welcome to the UCSB Course Instructor Search!</h5>
         <InstructorCourseSearchForm fetchJSON={fetchCourseInstructorJSON} />
+        <h5>Submit Feature Coming Soon!</h5>
         <BasicCourseTable courses={courseJSON} />
       </div>
     </BasicLayout>
