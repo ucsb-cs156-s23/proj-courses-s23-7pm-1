@@ -1,26 +1,20 @@
 package edu.ucsb.cs156.courses.controllers;
 
  import edu.ucsb.cs156.courses.entities.GradeHistory;
- import edu.ucsb.cs156.courses.entities.UCSBSubject;
- import edu.ucsb.cs156.courses.errors.EntityNotFoundException;
+
  import edu.ucsb.cs156.courses.repositories.GradeHistoryRepository;
- import edu.ucsb.cs156.courses.repositories.UCSBSubjectRepository;
- import edu.ucsb.cs156.courses.services.CSVToGradeHistoryService;
- import edu.ucsb.cs156.courses.services.UCSBSubjectsService;
+ import edu.ucsb.cs156.courses.services.UCSBGradeHistoryService;
+ import edu.ucsb.cs156.courses.utilities.CourseUtilities;
  import io.swagger.annotations.Api;
  import io.swagger.annotations.ApiOperation;
- import io.swagger.annotations.ApiParam;
  import lombok.extern.slf4j.Slf4j;
 
- import com.fasterxml.jackson.core.JsonProcessingException;
  import com.fasterxml.jackson.databind.ObjectMapper;
 
  import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.dao.DuplicateKeyException;
  import org.springframework.http.HttpStatus;
  import org.springframework.http.ResponseEntity;
  import org.springframework.security.access.prepost.PreAuthorize;
- import org.springframework.web.bind.annotation.DeleteMapping;
  import org.springframework.web.bind.annotation.GetMapping;
  import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,7 +29,6 @@ package edu.ucsb.cs156.courses.controllers;
  import java.io.IOException;
  import java.io.InputStreamReader;
  import java.io.Reader;
- import java.util.ArrayList;
  import java.util.List;
 
  @Slf4j
@@ -49,32 +42,24 @@ package edu.ucsb.cs156.courses.controllers;
      @Autowired
      ObjectMapper mapper;
 
-     @Autowired
-     CSVToGradeHistoryService csvToGradeHistoryService;
+     @ApiOperation(value = "Get grade history for a course")
+     @GetMapping(value = "/search", produces = "application/json")
+     public Iterable<GradeHistory> gradeHistoryBySubjectAreaAndCourseNumber(
+         @RequestParam String subjectArea,
+         @RequestParam String courseNumber
+     )  {
+       String course=CourseUtilities.makeFormattedCourseId(subjectArea, courseNumber);
+       Iterable<GradeHistory> gradeHistoryRows = gradeHistoryRepository.findByCourse(course);
+       return gradeHistoryRows;
+     }
 
-     @ApiOperation(value = "Get all Grade History")
+     @ApiOperation(value = "Get all grade history")
      @PreAuthorize("hasRole('ROLE_ADMIN')")
-     @GetMapping("admin/all")
+     @GetMapping("/all")
      public Iterable<GradeHistory> allHistory() {
          Iterable<GradeHistory> gradeHistoryRows = gradeHistoryRepository.findAll();
          return gradeHistoryRows;
      }
 
-     @ApiOperation(value = "Load grade history into database from uploaded CSV")
-     @PreAuthorize("hasRole('ROLE_ADMIN')")
-     @PostMapping(value = "upload", produces = "application/json")
-     public ResponseEntity<String> uploadCSV(@RequestPart MultipartFile file) throws IOException{
-       log.info("Starting upload CSV");
-       try {
-         Reader reader = new InputStreamReader(file.getInputStream());
-         List<GradeHistory> uploadedRows = csvToGradeHistoryService.parse(reader);
-         List<GradeHistory> savedCourse = (List<GradeHistory>) gradeHistoryRepository.saveAll(uploadedRows);
-         String body = mapper.writeValueAsString(savedCourse);
-         return ResponseEntity.ok().body(body);
-       } catch(Exception e){
-         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Malformed CSV", e);
-       }
-     }
-
-
- }
+    
+}
