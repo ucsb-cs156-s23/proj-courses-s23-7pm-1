@@ -56,6 +56,18 @@ describe("InstructorCourseSearchForm tests", () => {
     );
   });
 
+  test("Correct padding for submit button on screen when rendered", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <InstructorCourseSearchForm />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    const submitButtonRow = screen.getByTestId("submit-button-row");
+    expect(submitButtonRow).toHaveStyle({ paddingTop: "10px", paddingBottom: "10px" });
+  });
+
   test("when I select a start quarter, the state for start quarter changes", () => {
     render(
       <QueryClientProvider client={queryClient}>

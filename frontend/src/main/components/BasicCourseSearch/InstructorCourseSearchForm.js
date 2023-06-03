@@ -13,7 +13,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   // Stryker disable OptionalChaining
   const startQtr = systemInfo?.startQtrYYYYQ || "20211";
   const endQtr = systemInfo?.endQtrYYYYQ || "20214";
-  // Stryker enable OptionalChaining
+  // Stryker restore OptionalChaining
 
   const quarters = quarterRange(startQtr, endQtr);
 
@@ -39,7 +39,6 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
     fetchJSON(event, { startQuarter, endQuarter, instructor});
   };
 
-  // Stryker disable all : Stryker is testing by changing the padding to 0. But this is simply a visual optimization as it makes it look better
   return (
     <Form onSubmit={handleSubmit}>
       <Container>
@@ -67,7 +66,8 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
             <Form.Label>Course Instructor </Form.Label>
             <Form.Control onChange={setInstructor} defaultValue={instructor} />
         </Form.Group>
-        <Row style={{ paddingTop: 10, paddingBottom: 10 }}>
+        <Row style={{ paddingTop: 10, paddingBottom: 10 }}
+          data-testid="submit-button-row">
           <Col md="auto">
             <Button variant="primary" type="submit">
               Submit
