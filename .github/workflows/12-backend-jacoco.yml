@@ -29,6 +29,7 @@ jobs:
       run: mvn -B test jacoco:report verify
 
     - name: Get PR number
+      if: always() # always upload artifacts, even if tests fail
       id: get-pr-num
       run: |
         echo "GITHUB_EVENT_PATH=${GITHUB_EVENT_PATH}"
