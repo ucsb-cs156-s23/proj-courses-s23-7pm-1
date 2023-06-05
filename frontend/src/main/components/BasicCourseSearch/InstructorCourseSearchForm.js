@@ -13,6 +13,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   // Stryker disable OptionalChaining
   const startQtr = systemInfo?.startQtrYYYYQ || "20211";
   const endQtr = systemInfo?.endQtrYYYYQ || "20214";
+  
   // Stryker restore OptionalChaining
 
   const quarters = quarterRange(startQtr, endQtr);
@@ -20,7 +21,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   // Stryker disable all : not sure how to test/mock local storage
   const localStartQuarter = localStorage.getItem("InstructorCourseSearch.StartQuarter");
   const localEndQuarter = localStorage.getItem("InstructorCourseSearch.EndQuarter");
-  const localInstructor = localStorage.getItem("InstructorCourseSearch.instructor");
+  const localInstructor = localStorage.getItem("InstructorCourseSearch.Instructor");
 
   const { error: _error, status: _status } =
   useBackend(
@@ -37,6 +38,12 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchJSON(event, { startQuarter, endQuarter, instructor});
+  };
+
+  const handleInstructorOnChange = (event) => {
+    const input = event.target.value;
+    const lowercaseInput = input.toLowerCase();
+    setInstructor(lowercaseInput);
   };
 
   return (
@@ -62,9 +69,9 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
             />
           </Col>
         </Row>
-        <Form.Group controlId="InstructorCourseSearch">
+        <Form.Group controlId="InstructorCourseSearch.Instructor">
             <Form.Label>Course Instructor </Form.Label>
-            <Form.Control onChange={setInstructor} defaultValue={instructor} />
+            <Form.Control onChange={handleInstructorOnChange} defaultValue={instructor} />
         </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}
           data-testid="submit-button-row">
