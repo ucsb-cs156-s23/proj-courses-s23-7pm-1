@@ -38,12 +38,14 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchJSON(event, { startQuarter, endQuarter, instructor});
+    window.location.reload();
   };
 
   const handleInstructorOnChange = (event) => {
     const input = event.target.value;
     const lowercaseInput = input.toLowerCase();
     setInstructor(lowercaseInput);
+    
   };
 
   return (
