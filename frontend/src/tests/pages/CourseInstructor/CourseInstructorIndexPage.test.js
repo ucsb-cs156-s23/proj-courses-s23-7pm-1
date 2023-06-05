@@ -81,6 +81,7 @@ describe("CourseInstructorIndexPage tests", () => {
       expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1);
     });
 
+
     expect(axiosMock.history.get[0].params).toEqual({
         startQtr: "20222",
         endQtr: "20222",
