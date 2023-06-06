@@ -13,7 +13,6 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   // Stryker disable OptionalChaining
   const startQtr = systemInfo?.startQtrYYYYQ || "20211";
   const endQtr = systemInfo?.endQtrYYYYQ || "20214";
-  
   // Stryker restore OptionalChaining
 
   const quarters = quarterRange(startQtr, endQtr);
@@ -22,6 +21,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const localStartQuarter = localStorage.getItem("InstructorCourseSearch.StartQuarter");
   const localEndQuarter = localStorage.getItem("InstructorCourseSearch.EndQuarter");
   const localInstructor = localStorage.getItem("InstructorCourseSearch.Instructor");
+
 
   const { error: _error, status: _status } =
   useBackend(
@@ -45,7 +45,6 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
     const input = event.target.value;
     const lowercaseInput = input.toLowerCase();
     setInstructor(lowercaseInput);
-    
   };
 
   return (

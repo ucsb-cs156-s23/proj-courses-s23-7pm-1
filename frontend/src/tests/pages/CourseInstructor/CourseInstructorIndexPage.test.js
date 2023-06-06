@@ -71,6 +71,7 @@ describe("CourseInstructorIndexPage tests", () => {
     const enterInstructor = screen.getByLabelText("Course Instructor")
     userEvent.type(enterInstructor, "Yoga");
 
+
     const submitButton = screen.getByText("Submit");
     expect(submitButton).toBeInTheDocument();
     userEvent.click(submitButton);
