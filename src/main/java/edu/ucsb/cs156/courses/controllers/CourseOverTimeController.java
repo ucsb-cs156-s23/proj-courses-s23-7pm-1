@@ -6,8 +6,6 @@ import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import io.swagger.annotations.ApiOperation;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping("/api/public/courseovertime")
 public class CourseOverTimeController {
-
-    private final Logger logger = LoggerFactory.getLogger(CourseOverTimeController.class);
-
     private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
