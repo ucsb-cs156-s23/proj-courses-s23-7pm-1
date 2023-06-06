@@ -37,13 +37,15 @@ public class SearchByInstructorController {
     (
         @ApiParam
         (
+            name = "Start quarter",
             required = true,
             value = "Quarter in YYYYQ format (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
-            example = "20232"
+            example = "20202"
         )
         @RequestParam String startQtr,
         @ApiParam
         (
+            name =  "End quarter",
             required = true,
             value = "Quarter in YYYYQ format (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
             example = "20232"
@@ -51,9 +53,10 @@ public class SearchByInstructorController {
         @RequestParam String endQtr,
         @ApiParam
         (
+            name = "Instructor name",
             required = true,
             value = "Instructor's name",
-            example = "'CONRAD' or 'CONRAD P T'"
+            example = "'CONRAD'"
         )
         @RequestParam String instructor
     ) 
