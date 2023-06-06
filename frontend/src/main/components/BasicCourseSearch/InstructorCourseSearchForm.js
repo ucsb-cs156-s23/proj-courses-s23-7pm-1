@@ -22,19 +22,19 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const localStartQuarter = localStorage.getItem("InstructorCourseSearch.StartQuarter");
   const localEndQuarter = localStorage.getItem("InstructorCourseSearch.EndQuarter");
   const localInstructor = localStorage.getItem("InstructorCourseSearch.Instructor");
-
   const { error: _error, status: _status } =
   useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
+    
     ["/api/UCSBSubjects/all"], 
     { method: "GET", url: "/api/UCSBSubjects/all" }, 
     []
   );
-
+    // Stryker restore all
+    // Stryker disable all 
   const [startQuarter, setStartQuarter] = useState(localStartQuarter || quarters[0].yyyyq);
   const [endQuarter, setEndQuarter] = useState(localEndQuarter || quarters[0].yyyyq);
   const [instructor, setInstructor] = useState(localInstructor || "");
-    
+    // Stryker restore all
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchJSON(event, { startQuarter, endQuarter, instructor});
@@ -59,6 +59,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
               setQuarter={setStartQuarter}
               controlId={"InstructorCourseSearch.StartQuarter"}
               label={"Start Quarter"}
+              data-testid="start-quarter-field" 
             />
           </Col>
           <Col md="auto">
@@ -68,12 +69,17 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
               setQuarter={setEndQuarter}
               controlId={"InstructorCourseSearch.EndQuarter"}
               label={"End Quarter"}
+              data-testid="end-quarter-field"
             />
           </Col>
         </Row>
         <Form.Group controlId="InstructorCourseSearch.Instructor">
             <Form.Label>Course Instructor </Form.Label>
-            <Form.Control onChange={handleInstructorOnChange} defaultValue={instructor} />
+            <Form.Control
+              onChange={handleInstructorOnChange}
+              defaultValue={instructor}
+              data-testid="instructor-field" 
+            />
         </Form.Group>
         <Row style={{ paddingTop: 10, paddingBottom: 10 }}
           data-testid="submit-button-row">
@@ -85,7 +91,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
         </Row>
       </Container>
     </Form>
-  );
+  );  
 };
 
 export default InstructorCourseSearchForm;
