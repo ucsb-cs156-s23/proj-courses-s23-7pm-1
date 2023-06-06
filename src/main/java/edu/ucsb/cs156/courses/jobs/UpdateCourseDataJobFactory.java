@@ -24,6 +24,7 @@ public class UpdateCourseDataJobFactory  {
     public UpdateCourseDataJob create(String subjectArea, String quarterYYYYQ) {
         log.info("ucsbCurriculumService = " + ucsbCurriculumService);
         log.info("convertedSectionCollection = " + convertedSectionCollection);
+        log.info("updateCollection = " + updateCollection);
         return new UpdateCourseDataJob(subjectArea, quarterYYYYQ, ucsbCurriculumService, convertedSectionCollection, updateCollection);
     }
 }
