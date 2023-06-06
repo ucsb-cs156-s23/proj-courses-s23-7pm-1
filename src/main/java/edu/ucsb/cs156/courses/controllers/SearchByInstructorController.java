@@ -35,29 +35,8 @@ public class SearchByInstructorController {
     @GetMapping(value = "/instructorsearch", produces = "application/json")
     public ResponseEntity<String> search
     (
-        @ApiParam(
-            name = "startQtr",
-            type = "String",
-            value = "Starting quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
-            example = "20231",
-            required = true
-        )
         @RequestParam String startQtr,
-        @ApiParam(
-            name =  "endQtr",
-            type = "String",
-            value = "Ending quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
-            example = "20231",
-            required = true
-        )
         @RequestParam String endQtr,
-        @ApiParam(
-            name =  "instructor",
-            type = "String",
-            value = "Instructor name; e.g. 'conrad' or 'CONRAD' or 'CONRAD P T'",
-            example = "CONRAD",
-            required = true
-        )
         @RequestParam String instructor
     ) 
     throws JsonProcessingException 
