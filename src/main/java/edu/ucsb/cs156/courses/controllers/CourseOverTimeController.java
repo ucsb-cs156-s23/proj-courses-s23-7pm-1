@@ -31,7 +31,8 @@ public class CourseOverTimeController {
 
     @ApiOperation(value = "Get a list of courses over time")
     @GetMapping(value = "/search", produces = "application/json")
-    public ResponseEntity<String> search(
+    public ResponseEntity<String> search
+    (
         @RequestParam String startQtr,
         @RequestParam String endQtr,
         @RequestParam String subjectArea,
