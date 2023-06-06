@@ -25,25 +25,6 @@ public class UpdateCourseDataJob implements JobContextConsumer {
     @Getter private ConvertedSectionCollection convertedSectionCollection;
     @Getter private UpdateCollection updateCollection;
 
-    // public void setLastUpdateTime(UpdateCollection uc, String subjectArea, String quarterYYYYQ) {
-    //     Optional<Update> optionalUpdate =
-    //         uc.findOneBySubjectAreaAndQuarterYYYYQ(subjectArea, quarterYYYYQ);
-
-    //     if (optionalUpdate.isPresent()) {
-    //         Update existingUpdate = optionalUpdate.get();
-    //         existingUpdate.setLastUpdate(ZonedDateTime.now());
-    //         uc.save(existingUpdate);
-    //     } else {
-    //         uc.save(
-    //             Update.builder()
-    //                 .subjectArea(subjectArea)
-    //                 .quarterYYYYQ(quarterYYYYQ)
-    //                 .lastUpdate(ZonedDateTime.now())
-    //                 .build()
-    //         );
-    //     }
-    // }
-
     @Override
     public void accept(JobContext ctx) throws Exception {
         ctx.log("Updating courses for [" + subjectArea + " " + quarterYYYYQ + "]");
