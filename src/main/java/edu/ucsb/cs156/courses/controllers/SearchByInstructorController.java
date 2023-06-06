@@ -52,8 +52,8 @@ public class SearchByInstructorController {
         @ApiParam
         (
             required = true,
-            value = "Instructor's name e.g. 'CONRAD' or 'CONRAD P T'",
-            example = "CONRAD"
+            value = "Instructor's name",
+            example = "'CONRAD' or 'CONRAD P T'"
         )
         @RequestParam String instructor
     ) 
