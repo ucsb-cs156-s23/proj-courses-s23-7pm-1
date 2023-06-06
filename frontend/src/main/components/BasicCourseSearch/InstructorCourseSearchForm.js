@@ -21,7 +21,7 @@ const InstructorCourseSearchForm = ({ fetchJSON }) => {
   const localStartQuarter = localStorage.getItem("InstructorCourseSearch.StartQuarter");
   const localEndQuarter = localStorage.getItem("InstructorCourseSearch.EndQuarter");
   const localInstructor = localStorage.getItem("InstructorCourseSearch.Instructor");
-
+  // Stryker restore all
 
   const { error: _error, status: _status } =
   useBackend(
