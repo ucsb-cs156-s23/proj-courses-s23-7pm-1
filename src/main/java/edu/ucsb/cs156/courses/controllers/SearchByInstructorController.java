@@ -22,46 +22,50 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/public/courseovertime")
-public class InstructorClassesOverTimeController {
+public class SearchByInstructorController {
 
-    private final Logger logger = LoggerFactory.getLogger(InstructorClassesOverTimeController.class);
+    private final Logger logger = LoggerFactory.getLogger(SearchByInstructorController.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     ConvertedSectionCollection convertedSectionCollection;
 
-    @ApiOperation(value = "Get a list of courses taught by a specific instructor over some period")
+    @ApiOperation(value = "Get a list of courses taught by an instructor")
     @GetMapping(value = "/instructorsearch", produces = "application/json")
-    public ResponseEntity<String> search(
+    public ResponseEntity<String> search
+    (
         @ApiParam(
-            name = "startQuarter",
+            name = "startQtr",
             type = "String",
-            value = "Starting quarter in yyyyq format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
+            value = "Starting quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
             example = "20231",
             required = true
         )
-        @RequestParam String startQuarter,
+        @RequestParam String startQtr,
         @ApiParam(
-            name =  "endQuarter",
+            name =  "endQtr",
             type = "String",
-            value = "Ending quarter in yyyyq format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
+            value = "Ending quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
             example = "20231",
             required = true
         )
-        @RequestParam String endQuarter,
+        @RequestParam String endQtr,
         @ApiParam(
             name =  "instructor",
             type = "String",
-            value = "Instructor name; e.g. 'yang' or 'YANG' or 'YANG T H'",
-            example = "YANG",
+            value = "Instructor name; e.g. 'conrad' or 'CONRAD' or 'CONRAD P T'",
+            example = "CONRAD",
             required = true
         )
         @RequestParam String instructor
-    ) throws JsonProcessingException {
-        List<ConvertedSection> courseResults = convertedSectionCollection.findByQuarterRangeAndInstructor(
-            startQuarter,
-            endQuarter,
+    ) 
+    throws JsonProcessingException 
+    {
+        List<ConvertedSection> courseResults = convertedSectionCollection.findByQuarterRangeAndInstructor
+        (
+            startQtr,
+            endQtr,
             instructor
         );
         String body = mapper.writeValueAsString(courseResults);

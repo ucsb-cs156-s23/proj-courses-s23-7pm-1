@@ -31,11 +31,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@WebMvcTest(value = InstructorClassesOverTimeController.class)
+@WebMvcTest(value = SearchByInstructorController.class)
 @Import(SecurityConfig.class)
 @AutoConfigureDataJpa
-public class InstructorClassesOverTimeControllerTests {
-    private final Logger logger = LoggerFactory.getLogger(InstructorClassesOverTimeControllerTests.class);
+public class SearchByInstructorControllerTests {
+    private final Logger logger = LoggerFactory.getLogger(SearchByInstructorControllerTests.class);
     private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
@@ -48,8 +48,8 @@ public class InstructorClassesOverTimeControllerTests {
     public void test_search_emptyRequest() throws Exception {
         List<ConvertedSection> expectedResult = new ArrayList<ConvertedSection>();
         String urlTemplate = "/api/public/courseovertime/instructorsearch?startQtr=%s&endQtr=%s&instructor=%s";
-
-        String url = String.format(urlTemplate, "20222", "20212", "sisco");
+        
+        String url = String.format(urlTemplate, "20222", "20212", "CONRAD");
 
         // mock
         when(convertedSectionCollection.findByQuarterRangeAndInstructor(any(String.class), any(String.class), any(String.class)))
@@ -65,7 +65,7 @@ public class InstructorClassesOverTimeControllerTests {
         // assert
         String responseString = response.getResponse().getContentAsString();
         String expectedString = mapper.writeValueAsString(expectedResult);
-
+        
         assertEquals(expectedString, responseString);
     }
 
@@ -76,7 +76,7 @@ public class InstructorClassesOverTimeControllerTests {
             .title("OBJ ORIENTED DESIGN")
             .description("Intro to object oriented design")
             .build();
-
+        
         Section section1 = new Section();
 
         Section section2 = new Section();
@@ -85,14 +85,14 @@ public class InstructorClassesOverTimeControllerTests {
             .courseInfo(info)
             .section(section1)
             .build();
-
+        
         ConvertedSection cs2 = ConvertedSection.builder()
             .courseInfo(info)
             .section(section2)
             .build();
 
         String urlTemplate = "/api/public/courseovertime/instructorsearch?startQtr=%s&endQtr=%s&instructor=%s";
-
+    
         String url = String.format(urlTemplate, "20222", "20222", "EMRE");
 
         List<ConvertedSection> expectedSecs = new ArrayList<ConvertedSection>();

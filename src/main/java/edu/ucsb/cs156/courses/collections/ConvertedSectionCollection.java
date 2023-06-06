@@ -14,13 +14,13 @@ public interface ConvertedSectionCollection extends MongoRepository<ConvertedSec
     @Query("{'courseInfo.quarter': ?0, 'section.enrollCode': ?1}")
     Optional<ConvertedSection> findOneByQuarterAndEnrollCode(String quarter, String enrollCode);
 
-    @Query("{'courseInfo.quarter': { $gte: ?0, $lte: ?1 }, 'courseInfo.courseId': { $regex: ?2 }}")
+    @Query("{'courseInfo.quarter': { $gte: ?0, $lte: ?1 }, 'courseInfo.courseId': { $regex: ?2 } }")
     List<ConvertedSection> findByQuarterRangeAndCourseId(
         String startQuarter,
         String endQuarter,
         String courseId );
-    
-    @Query("{'courseInfo.quarter': { $gte: ?0, $lte: ?1 }, 'section.instructors.instructor': { $regex: ?2, $options: 'i' } }")
+        
+    @Query("{'courseInfo.quarter': {$gte: ?0, $lte: ?1}, 'section.instructors.instructor': {$regex: ?2, $options: 'i'} }")
     List<ConvertedSection> findByQuarterRangeAndInstructor(
         String startQuarter,
         String endQuarter,
