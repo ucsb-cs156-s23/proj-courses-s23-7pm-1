@@ -6,6 +6,7 @@ import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import io.swagger.annotations.ApiOperation;
 
+import org.aspectj.apache.bcel.classfile.Module.Require;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("/api/public/courseovertime")
 public class SearchByInstructorController {
 
-    private final Logger logger = LoggerFactory.getLogger(SearchByInstructorController.class);
+    private final Logger logger = LoggerFactory.getLogger(SearchByInstructo`rController.class);
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -35,31 +36,31 @@ public class SearchByInstructorController {
     @GetMapping(value = "/instructorsearch", produces = "application/json")
     public ResponseEntity<String> search
     (
-        @ApiParam(
-            name = "startQtr",
+        @ApiParam
+        (
             type = "String",
-            value = "Starting quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
-            example = "20231",
-            required = true
+            example = "20212",
+            required = true,
+            value = "Quarter in YYYYQ format (quarter 1=Winter, 2=Spring, 3=Summer, 4=Fall)"
         )
         @RequestParam String startQtr,
-        @ApiParam(
-            name =  "endQtr",
+        @ApiParam
+        (
             type = "String",
-            value = "Ending quarter in YYYYQ format, e.g. 20231 for W23, 20232 for S23, etc. (1=Winter, 2=Spring, 3=Summer, 4=Fall)",
-            example = "20231",
-            required = true
+            example = "20212",
+            required = true,
+            value = "Quarter in YYYYQ format (quarter 1=Winter, 2=Spring, 3=Summer, 4=Fall)"
         )
         @RequestParam String endQtr,
-        @ApiParam(
-            name =  "instructor",
+        @ApiParam
+        (
             type = "String",
-            value = "Instructor name; e.g. 'conrad' or 'CONRAD' or 'CONRAD P T'",
-            example = "CONRAD",
-            required = true
+            example = "20212",
+            required = true,
+            value = "Quarter in YYYYQ format (quarter 1=Winter, 2=Spring, 3=Summer, 4=Fall)"
         )
         @RequestParam String instructor
-    ) 
+    )
     throws JsonProcessingException 
     {
         List<ConvertedSection> courseResults = convertedSectionCollection.findByQuarterRangeAndInstructor
