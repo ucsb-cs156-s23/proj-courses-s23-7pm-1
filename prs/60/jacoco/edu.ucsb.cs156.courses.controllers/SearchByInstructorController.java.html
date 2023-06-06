@@ -37,13 +37,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
     (
         @ApiParam
         (
+            name = &quot;Start quarter&quot;,
             required = true,
             value = &quot;Quarter in YYYYQ format (1=Winter, 2=Spring, 3=Summer, 4=Fall)&quot;,
-            example = &quot;20232&quot;
+            example = &quot;20202&quot;
         )
         @RequestParam String startQtr,
         @ApiParam
         (
+            name =  &quot;End quarter&quot;,
             required = true,
             value = &quot;Quarter in YYYYQ format (1=Winter, 2=Spring, 3=Summer, 4=Fall)&quot;,
             example = &quot;20232&quot;
@@ -51,22 +53,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
         @RequestParam String endQtr,
         @ApiParam
         (
+            name = &quot;Instructor name&quot;,
             required = true,
             value = &quot;Instructor's name&quot;,
-            example = &quot;'CONRAD' or 'CONRAD P T'&quot;
+            example = &quot;'CONRAD'&quot;
         )
         @RequestParam String instructor
     ) 
     throws JsonProcessingException 
     {
-<span class="fc" id="L62">        List&lt;ConvertedSection&gt; courseResults = convertedSectionCollection.findByQuarterRangeAndInstructor</span>
-<span class="fc" id="L63">        (</span>
+<span class="fc" id="L65">        List&lt;ConvertedSection&gt; courseResults = convertedSectionCollection.findByQuarterRangeAndInstructor</span>
+<span class="fc" id="L66">        (</span>
             startQtr,
             endQtr,
             instructor
         );
-<span class="fc" id="L68">        String body = mapper.writeValueAsString(courseResults);</span>
-<span class="fc" id="L69">        return ResponseEntity.ok().body(body);</span>
+<span class="fc" id="L71">        String body = mapper.writeValueAsString(courseResults);</span>
+<span class="fc" id="L72">        return ResponseEntity.ok().body(body);</span>
     }    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

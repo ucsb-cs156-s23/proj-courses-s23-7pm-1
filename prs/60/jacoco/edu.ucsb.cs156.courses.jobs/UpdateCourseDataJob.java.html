@@ -2,10 +2,12 @@
 
 import java.util.List;
 import java.util.Optional;
-
+import java.time.ZonedDateTime;
 
 import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
+import edu.ucsb.cs156.courses.collections.UpdateCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
+import edu.ucsb.cs156.courses.documents.Update;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import edu.ucsb.cs156.courses.services.jobs.JobContext;
 import edu.ucsb.cs156.courses.services.jobs.JobContextConsumer;
@@ -13,55 +15,55 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-
 @AllArgsConstructor
-<span class="fc" id="L18">@Slf4j</span>
+<span class="fc" id="L19">@Slf4j</span>
 public class UpdateCourseDataJob implements JobContextConsumer {
 
     @Getter private String subjectArea;
     @Getter private String quarterYYYYQ;
     @Getter private UCSBCurriculumService ucsbCurriculumService;
     @Getter private ConvertedSectionCollection convertedSectionCollection;
+    @Getter private UpdateCollection updateCollection;
 
     @Override
     public void accept(JobContext ctx) throws Exception {
-<span class="fc" id="L28">        ctx.log(&quot;Updating courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;]&quot;);</span>
+<span class="fc" id="L30">        ctx.log(&quot;Updating courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;]&quot;);</span>
 
-<span class="fc" id="L30">        List&lt;ConvertedSection&gt; convertedSections = ucsbCurriculumService.getConvertedSections(subjectArea, quarterYYYYQ,</span>
+<span class="fc" id="L32">        List&lt;ConvertedSection&gt; convertedSections = ucsbCurriculumService.getConvertedSections(subjectArea, quarterYYYYQ,</span>
                 &quot;A&quot;);
 
-<span class="fc" id="L33">        ctx.log(&quot;Found &quot; + convertedSections.size() + &quot; sections&quot;);</span>
-<span class="fc" id="L34">        ctx.log(&quot;Storing in MongoDB Collection...&quot;);</span>
+<span class="fc" id="L35">        ctx.log(&quot;Found &quot; + convertedSections.size() + &quot; sections&quot;);</span>
+<span class="fc" id="L36">        ctx.log(&quot;Storing in MongoDB Collection...&quot;);</span>
 
-<span class="fc" id="L36">        int newSections = 0;</span>
-<span class="fc" id="L37">        int updatedSections = 0;</span>
-<span class="fc" id="L38">        int errors = 0;</span>
+<span class="fc" id="L38">        int newSections = 0;</span>
+<span class="fc" id="L39">        int updatedSections = 0;</span>
+<span class="fc" id="L40">        int errors = 0;</span>
 
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (ConvertedSection section : convertedSections) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (ConvertedSection section : convertedSections) {</span>
             try {
-<span class="fc" id="L42">                String quarter = section.getCourseInfo().getQuarter();</span>
-<span class="fc" id="L43">                String enrollCode =  section.getSection().getEnrollCode();</span>
-<span class="fc" id="L44">                Optional&lt;ConvertedSection&gt; optionalSection = convertedSectionCollection</span>
-<span class="fc" id="L45">                        .findOneByQuarterAndEnrollCode(quarter,enrollCode);</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">                if (optionalSection.isPresent()) {</span>
-<span class="fc" id="L47">                    ConvertedSection existingSection = optionalSection.get();</span>
-<span class="fc" id="L48">                    existingSection.setCourseInfo(section.getCourseInfo());</span>
-<span class="fc" id="L49">                    existingSection.setSection(section.getSection());</span>
-<span class="fc" id="L50">                    convertedSectionCollection.save(existingSection);</span>
-<span class="fc" id="L51">                    updatedSections++;</span>
-<span class="fc" id="L52">                } else {</span>
-<span class="fc" id="L53">                    convertedSectionCollection.save(section);</span>
-<span class="fc" id="L54">                    newSections++;</span>
+<span class="fc" id="L44">                String quarter = section.getCourseInfo().getQuarter();</span>
+<span class="fc" id="L45">                String enrollCode =  section.getSection().getEnrollCode();</span>
+<span class="fc" id="L46">                Optional&lt;ConvertedSection&gt; optionalSection = convertedSectionCollection</span>
+<span class="fc" id="L47">                        .findOneByQuarterAndEnrollCode(quarter,enrollCode);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (optionalSection.isPresent()) {</span>
+<span class="fc" id="L49">                    ConvertedSection existingSection = optionalSection.get();</span>
+<span class="fc" id="L50">                    existingSection.setCourseInfo(section.getCourseInfo());</span>
+<span class="fc" id="L51">                    existingSection.setSection(section.getSection());</span>
+<span class="fc" id="L52">                    convertedSectionCollection.save(existingSection);</span>
+<span class="fc" id="L53">                    updatedSections++;</span>
+<span class="fc" id="L54">                } else {</span>
+<span class="fc" id="L55">                    convertedSectionCollection.save(section);</span>
+<span class="fc" id="L56">                    newSections++;</span>
                 }
-<span class="fc" id="L56">            } catch (Exception e) {</span>
-<span class="fc" id="L57">                ctx.log(&quot;Error saving section: &quot; + e.getMessage());</span>
-<span class="fc" id="L58">                errors++;</span>
-<span class="fc" id="L59">            }</span>
-<span class="fc" id="L60">        }</span>
+<span class="fc" id="L58">            } catch (Exception e) {</span>
+<span class="fc" id="L59">                ctx.log(&quot;Error saving section: &quot; + e.getMessage());</span>
+<span class="fc" id="L60">                errors++;</span>
+<span class="fc" id="L61">            }</span>
+<span class="fc" id="L62">        }</span>
     
-<span class="fc" id="L62">        ctx.log(String.format(&quot;%d new sections saved, %d sections updated, %d errors&quot;, newSections, updatedSections,</span>
-<span class="fc" id="L63">                errors));</span>
-<span class="fc" id="L64">        ctx.log(&quot;Courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;] have been updated&quot;);</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L64">        ctx.log(String.format(&quot;%d new sections saved, %d sections updated, %d errors&quot;, newSections, updatedSections,</span>
+<span class="fc" id="L65">                errors));</span>
+<span class="fc" id="L66">        ctx.log(&quot;Courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;] have been updated&quot;);</span>
+<span class="fc" id="L67">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
