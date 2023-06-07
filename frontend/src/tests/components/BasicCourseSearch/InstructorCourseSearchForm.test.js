@@ -89,6 +89,7 @@ describe("InstructorCourseSearchForm tests", () => {
         </MemoryRouter>
       </QueryClientProvider>
     );
+    
     const selectEndQuarter = screen.getByLabelText("End Quarter");
     userEvent.selectOptions(selectEndQuarter, "20204");
     expect(selectEndQuarter.value).toBe("20204");
@@ -130,7 +131,7 @@ describe("InstructorCourseSearchForm tests", () => {
     const expectedFields = {
       startQuarter: "20211",
       endQuarter: "20214",
-      instructor: "",
+      instructor: "conrad",
     };
 
 
@@ -139,7 +140,7 @@ describe("InstructorCourseSearchForm tests", () => {
     const selectEndQuarter = screen.getByLabelText("End Quarter");
     userEvent.selectOptions(selectEndQuarter, "20214");
     const selectInstructor = screen.getByLabelText("Course Instructor");
-    userEvent.type(selectInstructor, "");
+    userEvent.type(selectInstructor, "ConRad");
     const submitButton = screen.getByText("Submit");
     userEvent.click(submitButton);
 
@@ -208,5 +209,7 @@ describe("InstructorCourseSearchForm tests", () => {
     expect(await screen.findByTestId(/InstructorCourseSearch.StartQuarter-option-3/)).toHaveValue("20214")
 
   });
+
+  
 
 });

@@ -20,7 +20,6 @@ export default function CourseInstructorIndexPage() {
   });
 
   const onSuccess = (setCourseJSON);
-    
 
 
   const mutation = useBackendMutation(

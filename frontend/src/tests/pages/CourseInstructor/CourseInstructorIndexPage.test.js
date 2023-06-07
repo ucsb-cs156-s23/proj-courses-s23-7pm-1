@@ -69,7 +69,8 @@ describe("CourseInstructorIndexPage tests", () => {
     const selectEndQuarter = screen.getByLabelText("End Quarter");
     userEvent.selectOptions(selectEndQuarter, "20222");
     const enterInstructor = screen.getByLabelText("Course Instructor")
-    userEvent.type(enterInstructor, "");
+    userEvent.type(enterInstructor, "Yoga");
+
 
     const submitButton = screen.getByText("Submit");
     expect(submitButton).toBeInTheDocument();
@@ -81,10 +82,11 @@ describe("CourseInstructorIndexPage tests", () => {
       expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1);
     });
 
+
     expect(axiosMock.history.get[0].params).toEqual({
         startQtr: "20222",
         endQtr: "20222",
-        instructor: "",
+        instructor: "yoga",
     });
 
     
