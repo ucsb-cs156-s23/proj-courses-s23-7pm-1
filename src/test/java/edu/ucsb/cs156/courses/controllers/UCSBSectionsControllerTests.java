@@ -12,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -29,7 +27,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Import(SecurityConfig.class)
 @AutoConfigureDataJpa
 public class UCSBSectionsControllerTests {
-    private final Logger logger = LoggerFactory.getLogger(UCSBSectionsControllerTests.class);
     private ObjectMapper mapper = new ObjectMapper();
 
     @MockBean
