@@ -3,6 +3,7 @@ import CourseDescriptionIndexPage from "main/pages/CourseDescriptions/CourseDesc
 import ProfilePage from "main/pages/ProfilePage";
 import AdminUsersPage from "main/pages/AdminUsersPage";
 import AdminLoadSubjectsPage from "main/pages/AdminLoadSubjectsPage";
+import AdminLastUpdatedPage from "main/pages/AdminLastUpdatedPage";
 import AdminPersonalSchedulesPage from "main/pages/AdminPersonalSchedulePage";
 import AdminJobsPage from "main/pages/AdminJobsPage";
 
@@ -36,6 +37,7 @@ function App() {
             <>
               <Route exact path="/admin/users" element={<AdminUsersPage />} />
               <Route exact path="/admin/loadsubjects" element={<AdminLoadSubjectsPage />} />
+              <Route exact path="/admin/lastupdated" element={<AdminLastUpdatedPage />} />
               <Route exact path="/admin/personalschedule" element={<AdminPersonalSchedulesPage />} />
               <Route path="/admin/jobs" element={<AdminJobsPage />} />
             </>

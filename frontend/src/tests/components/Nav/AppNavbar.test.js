@@ -46,7 +46,8 @@ describe("AppNavbar tests", () => {
         aElement?.click();
 
         expect(await screen.findByTestId(/appnavbar-admin-users/)).toBeInTheDocument();
-        expect(screen.getByTestId("appnavbar-admin-loadsubjects")).toBeInTheDocument(); 
+        expect(screen.getByTestId("appnavbar-admin-loadsubjects")).toBeInTheDocument();
+        expect(screen.getByTestId("appnavbar-admin-lastupdated")).toBeInTheDocument();
         expect(screen.getByTestId(/appnavbar-admin-personalschedule/)).toBeInTheDocument();
     });
 
