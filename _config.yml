@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/proj-courses-s23-7pm-1
 owner: ucsb-cs156-s23
 repo_name: proj-courses-s23-7pm-1
-pull_requests: [{"author":{"id":"MDQ6VXNlcjcyNzE1NTk1","is_bot":false,"login":"nandyy719","name":""},"headRefName":"Nandhan-UpdatesPage","number":61,"title":"added updates table and storybook entry","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-1/pull/61"},{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-Christian-AddMongoDBCollections-draft","number":53,"title":"Pc christian add mongo db collections draft","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-1/pull/53"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjc3NTIxMjQ5","is_bot":false,"login":"cameron-barrett","name":"Cameron Barrett"},"headRefName":"Cameron-FixSearchInstructorError","number":64,"title":"Fixing a stupid error in the naming of the api params","url":"https://github.com/ucsb-cs156-s23/proj-courses-s23-7pm-1/pull/64"}]
