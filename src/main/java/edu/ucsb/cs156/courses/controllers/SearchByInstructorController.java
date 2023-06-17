@@ -56,7 +56,7 @@ public class SearchByInstructorController {
             name = "instructor",
             required = true,
             value = "Instructor's name",
-            example = "'CONRAD'q"
+            example = "'CONRAD'"
         )
         @RequestParam String instructor
     ) 
